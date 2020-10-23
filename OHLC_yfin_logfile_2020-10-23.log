@@ -1,0 +1,16 @@
+2020-10-23 10:36:27,990 - In the main function
+2020-10-23 10:36:27,990 - Processing for date 2020-10-23 00:00:00
+2020-10-23 10:36:27,990 - Check if file already exists
+2020-10-23 10:36:27,991 - OHLC Data file exists. Getting data in dataframe and last date
+2020-10-23 10:36:27,991 - Opening existing data file and extracting last date from it
+2020-10-23 10:36:43,247 - Last date in the file is 2020-10-23 00:00:00
+2020-10-23 10:36:45,196 - Getting OHLC data for days provided
+2020-10-23 10:36:45,308 - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2020-10-23 10:36:45,308 - NumExpr defaulting to 8 threads.
+2020-10-23 10:42:02,816 - Writing data in the file name OHLC_yfinance_data.csv
+2020-10-23 16:09:53,148 - In the main function
+2020-10-23 16:09:53,150 - Processing for date 2020-10-23 00:00:00
+2020-10-23 16:09:53,151 - Check if file already exists
+2020-10-23 16:09:53,151 - OHLC file does not exists. Getting maximum possible data
+2020-10-23 16:09:53,151 - Getting OHLC data for days provided
+2020-10-23 16:09:53,876 - Writing data in the file name IntraDay_yfinance_data.csv
