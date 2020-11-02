@@ -1,0 +1,7 @@
+2020-10-29 18:30:00,361 - In the main function
+2020-10-29 18:30:00,361 - Processing for date 2020-10-29 00:00:00
+2020-10-29 18:30:00,362 - Check if file already exists
+2020-10-29 18:30:00,362 - News Data file exists. Pulling only 25 news count
+2020-10-29 18:30:00,362 - Opening existing data file
+2020-10-29 18:30:00,927 - Pulling daily news
+2020-10-29 18:35:15,532 - Writing data in the file name DailyNews_data_yahooquery.csv

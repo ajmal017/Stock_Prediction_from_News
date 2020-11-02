@@ -1,0 +1,9 @@
+2020-10-29 19:33:18,849 - In the main function
+2020-10-29 19:33:18,849 - Processing for date 2020-10-29 00:00:00
+2020-10-29 19:33:18,850 - Check if file already exists
+2020-10-29 19:33:18,850 - OHLC Data file exists. Pulling data only for one day
+2020-10-29 19:33:18,850 - Opening existing data file
+2020-10-29 19:33:20,707 - Getting OHLC data for days provided
+2020-10-29 19:33:20,820 - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2020-10-29 19:33:20,820 - NumExpr defaulting to 8 threads.
+2020-10-29 19:38:37,896 - Writing data in the file name IntraDay_yfinance_data.csv

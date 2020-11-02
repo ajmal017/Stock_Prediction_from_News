@@ -1,0 +1,99 @@
+import requests
+import pandas as pd
+
+
+wiki_data=pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies') # Open the link and download S&P company details in a table
+data = wiki_data[0] # All data is stored in first cell
+display(data.head()) # print to check data downloaded
+# drop columns 'SEC filings' and 'CIK'. Since we are dropping columns we have axis = 1 and inplace = True as we are removing these columns in original dataframe
+data.drop(['SEC filings', 'CIK'], axis=1, inplace=True)
+sorted_data = data.sort_values(by=['Symbol'], ascending=True) # Sort the dataframe on ticker in alphabetical ascending order
+# Convert the dataframe to csv file
+#sorted_data.to_csv('S&P500Tickers.csv', mode='w', index=False) #index is False as we don;t want to write index in csv file
+companies = sorted_data['Symbol']
+
+
+#companies = ['AAPL']
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#print(companies)
+value_ratios ={}
+balance_sheets ={}
+income_statements ={}
+cash_flows ={}
+
+for company in companies:
+ try:
+
+  fin_ratios = requests.get(f'https://financialmodelingprep.com/api/v3/ratios/{company}?apikey=46e34bd7d2168d30561e3009d223dde3').json()
+  value_ratios[company] = {}
+  value_ratios[company]['ROE'] = fin_ratios[0]['returnOnEquity']
+  value_ratios[company]['ROA'] = fin_ratios[0]['returnOnAssets']
+  value_ratios[company]['Debt_Ratio'] = fin_ratios[0]['debtRatio']
+  value_ratios[company]['Interest_Coverage'] = fin_ratios[0]['interestCoverage']
+  value_ratios[company]['Payout_Ratio'] = fin_ratios[0]['payoutRatio']
+  value_ratios[company]['Dividend_Payout_Ratio'] = fin_ratios[0]['dividendPayoutRatio']
+  value_ratios[company]['PB'] = fin_ratios[0]['priceToBookRatio']
+  value_ratios[company]['PS'] = fin_ratios[0]['priceToSalesRatio']
+  value_ratios[company]['PE'] = fin_ratios[0]['priceEarningsRatio']
+  value_ratios[company]['Dividend_Yield'] = fin_ratios[0]['dividendYield']
+  value_ratios[company]['Gross_Profit_Margin'] = fin_ratios[0]['grossProfitMargin']
+  
+  growth_ratios = requests.get(f'https://financialmodelingprep.com/api/v3/financial-growth/{company}?apikey=46e34bd7d2168d30561e3009d223dde3').json()
+  value_ratios[company]['Revenue_Growth'] = growth_ratios[0]['revenueGrowth']
+  value_ratios[company]['NetIncome_Growth'] = growth_ratios[0]['netIncomeGrowth']
+  value_ratios[company]['EPS_Growth'] = growth_ratios[0]['epsgrowth']
+  value_ratios[company]['RD_Growth'] = growth_ratios[0]['rdexpenseGrowth']
+  income_statement = requests.get(f'https://financialmodelingprep.com/api/v3/income-statement/{company}?apikey=46e34bd7d2168d30561e3009d223dde3').json()
+  #print(income_statement[0])
+  income_statements[company] = {}
+  for X in income_statement[0]:
+      #print(X)
+      income_statements[company][X] = income_statement[0][X]
+  balance_sheet = requests.get(f'https://financialmodelingprep.com/api/v3/balance-sheet-statement/{company}?apikey=46e34bd7d2168d30561e3009d223dde3').json()
+  #print(balance_sheet[0])
+  balance_sheets[company] = {}
+  for X in balance_sheet[0]:
+      #print(X)
+      balance_sheets[company][X] = balance_sheet[0][X]
+
+  cash_flow = requests.get(f'https://financialmodelingprep.com/api/v3/cash-flow-statement/{company}?apikey=46e34bd7d2168d30561e3009d223dde3').json()
+  #print(cash_flow[0])
+  cash_flows[company] = {}
+  for X in cash_flow[0]:
+      #print(X)
+      cash_flows[company][X] = cash_flow[0][X]
+  #balance_sheets[company]['balance_sheet'] = balance_sheet
+
+ except:
+     pass
+#print(value_ratios)
+
+Ratios = pd.DataFrame.from_dict(value_ratios,orient='index')
+Ratios.shape
+Ratios
+Ratios.to_csv('ratios.csv', mode='w')
+income_statements
+IS = pd.DataFrame.from_dict(income_statements,orient='index')
+IS.shape
+IS.to_csv('income_statements.csv', mode='w')
+balance_sheets
+BS = pd.DataFrame.from_dict(balance_sheets,orient='index')
+BS.shape
+BS.to_csv('balance_sheets.csv', mode='w')
+cash_flows
+CF = pd.DataFrame.from_dict(cash_flows,orient='index')
+CF.shape
+CF.to_csv('Cash_Flow.csv', mode='w')

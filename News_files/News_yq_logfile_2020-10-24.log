@@ -1,0 +1,6 @@
+2020-10-24 11:10:40,308 - In the main function
+2020-10-24 11:10:40,309 - Processing for date 2020-10-24 00:00:00
+2020-10-24 11:10:40,309 - Check if file already exists
+2020-10-24 11:10:40,309 - News Data file exists. Pulling only 25 news count
+2020-10-24 11:10:40,309 - Opening existing data file
+2020-10-24 11:10:41,734 - Pulling daily news

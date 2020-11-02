@@ -1,0 +1,5 @@
+2020-10-24 07:52:50,296 - In the main function
+2020-10-24 07:52:50,297 - Processing for date 2020-10-24 00:00:00
+2020-10-24 07:52:50,297 - Check if file already exists
+2020-10-24 07:52:50,297 - News file does not exists. Getting maximum possible data
+2020-10-24 07:52:50,297 - Pulling daily news
